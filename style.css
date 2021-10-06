@@ -8,14 +8,14 @@ body {
     min-height: 100vh;
     min-width: 100vw;
     margin: 0;
-    /* display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; */
+    flex-direction: column;
 }
 
-canvas {
-    min-width: 50vw;
-    min-height: 80vh;
-    background-color: #111111;
+.gameBox {
+    /* min-width: 50vw;
+    min-height: 80vh; */
+    background-color: skyblue;
 }
