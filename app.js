@@ -10,5 +10,5 @@ function drawBall(bx, by) {
 }
 
 canvas.addEventListener("mousemove", function(e){
-    drawBall(e.pageX, e.pageY);
+    drawBall(e.clientX, e.clientY);
 });
