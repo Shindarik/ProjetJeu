@@ -8,10 +8,10 @@ body {
     min-height: 100vh;
     min-width: 100vw;
     margin: 0;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
 }
 
 canvas {
