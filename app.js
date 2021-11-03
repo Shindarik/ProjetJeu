@@ -1,12 +1,20 @@
 const gameBox = d3.select(".gameBox");
 
 let coord;
+let mouseX, mouseY;
 let compteur = 0;
 let tabCoord = [];
+
+function entierAlea(n) {
+    return Math.floor(Math.random()*n);
+}
 
 gameBox.on("mousemove", function (e) {
 
     let pointer = d3.pointer(e);
+
+    mouseX = pointer[0];
+    mouseY = pointer[1];
 
     coord = 90 - (Math.atan2(pointer[0], pointer[1]) * 180 / Math.PI);
 
@@ -22,7 +30,7 @@ function updateDOM() {
     join.enter()
         .append("path")
         .attr("d","M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5")
-        .style("stroke", "yellow");
+        .style("stroke", "red");
     
     join.exit()
         .remove();
@@ -30,24 +38,24 @@ function updateDOM() {
 
     updateTransforms();
 }
+
 function updateTransforms(){
     gameBox
     .selectAll("path")
-    .attr("transform", d=>`translate(${d.x}, ${d.y})scale(${(d.x*d.x+d.y*d.y+5000)/10000})`);          
+    .attr("transform", d=>`translate(${d.x}, ${d.y})`);          
 }
 
 // initialement: on ajoute les Ã©toiles
 updateDOM();
 
-function deplacePoint(c){    
-    let distance=Math.sqrt((c.x*c.x+c.y*c.y)/10000); 
-    c.x*=(1+.03/distance);
-    c.y*=(1+.03/distance);   
+function deplacePoint(c){     
+    c.x+= 1 ;
+    c.y+= 1 ;   
 }
 function pointVisible(c){ 
-    return c.x<80 && c.x>-80 &&  c.y<80 && c.y>-80;
+    return c.x<250 && c.x>-250 &&  c.y<350 && c.y>-350;
 }
-//toutes les 50ms, on ne modifie que les coordonnÃ©es
+//toutes les 100ms, on ne modifie que les coordonnÃ©es
 setInterval(function(){
     tabCoord.forEach(deplacePoint);
     if (tabCoord.every(pointVisible)) { 
@@ -58,16 +66,19 @@ setInterval(function(){
         tabCoord=tabCoord.filter(pointVisible);
         updateDOM();
     }
-}, 50);
+}, 10);
 
 
 
-//toutes les 200ms, on insÃ¨re une Ã©toile
+//toutes les 1000ms, on insÃ¨re une Ã©toile
 setInterval(function(){    
     compteur++;
-    tabCoord.push({x:entierAlea(40)-19.5, y:entierAlea(40)-19.5, id: compteur});
+    tabCoord.push({x:0, y:0, id: compteur});
     updateDOM();
-}, 100);
+}, 1000);
+
+
+
 
 
 

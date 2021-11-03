@@ -12,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: skyblue;
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
     /* min-width: 50vw;
     min-height: 80vh; */
     background-color: skyblue;
+    border: solid;
     margin: 10px 0px;
 }
 
