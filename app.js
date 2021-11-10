@@ -51,11 +51,8 @@ updateDOM();
 function deplacePoint(c){
     
     if(mouseX >= 0 && mouseY >= 0){
-        while(c.x != mouseX && c.y != mouseY){
-            console.log("fez");
-            /*c.x += 1 ;
-            c.y += 1 ;*/
-        }
+        c.x += 1 ;
+        c.y += 1 ;
     }else if(mouseX <= 0 && mouseY >= 0){
         c.x -= 1 ;
         c.y += 1 ;
