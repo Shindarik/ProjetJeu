@@ -48,10 +48,23 @@ function updateTransforms(){
 // initialement: on ajoute les Ã©toiles
 updateDOM();
 
-function deplacePoint(c){     
-    c.x+= 1 ;
-    c.y+= 1 ;   
+function deplacePoint(c){
+    
+    if(mouseX >= 0 && mouseY >= 0){
+        c.x += 1 ;
+        c.y += 1 ;
+    }else if(mouseX <= 0 && mouseY >= 0){
+        c.x -= 1 ;
+        c.y += 1 ;
+    }else if(mouseX <= 0 && mouseY <= 0){
+        c.x -= 1 ;
+        c.y -= 1 ;
+    }else if(mouseX >= 0 && mouseY <= 0){
+        c.x += 1 ;
+        c.y -= 1 ;
+    }
 }
+
 function pointVisible(c){ 
     return c.x<250 && c.x>-250 &&  c.y<350 && c.y>-350;
 }
