@@ -117,7 +117,7 @@ function placeAmis(position) {
   }
 
   function amiVisible(c) {
-    if((c.x != 0) && (c.y !=0)){
+    if((c.x != 0) && (c.y != 0)){
       return true;
     }
   }
