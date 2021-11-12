@@ -21,7 +21,7 @@ gameBox.on("mousemove", function (e) {
 });
 
 function updateDOM() {
-  let join = gameBox.selectAll("path").data(tabCoord, (d) => d.id);
+  let join = gameBox.selectAll("Tirs").data(tabCoord, (d) => d.id);
 
   join
     .enter()
@@ -30,6 +30,7 @@ function updateDOM() {
       "d",
       "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
     )
+    .attr("class", "Tirs")
     .style("stroke", "red");
 
   join.exit().remove();
@@ -39,7 +40,7 @@ function updateDOM() {
 
 function updateTransforms() {
   gameBox
-    .selectAll("path")
+    .selectAll(".Tires")
     .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 }
 
@@ -63,8 +64,9 @@ function deplacePoint(c) {
 }
 
 function pointVisible(c) {
-  return c.x < 250 && c.x > -250 && c.y < 350 && c.y > -350;
+  return c.x < 350 && c.x > -350 && c.y < 250 && c.y > -250;
 }
+
 //toutes les 100ms, on ne modifie que les coordonnÃ©es
 setInterval(function () {
   tabCoord.forEach(deplacePoint);
@@ -81,112 +83,10 @@ setInterval(function () {
 //toutes les 1000ms, on insÃ¨re une Ã©toile
 setInterval(function () {
   compteur++;
-  tabCoord.push({ x: 0, y: 0, id: compteur });
+  tabCoord.push({
+    x: 0,
+    y: 0,
+    id: compteur
+  });
   updateDOM();
 }, 1000);
-
-function placeAmis(position) {
-  switch (position) {
-    case 0:
-      x = -350;
-      y = -250;
-      r = 135;
-      return [x,y,r]
-      
-    case 1:
-      x = 525;
-      y = -250;
-      r = 180;
-      return [x,y,r]
-      
-    case 2:
-      x = 700;
-      y = -250;
-      r = -135;
-      return [x,y,r]
-      
-    case 3:
-      x = 700;
-      y = -350;
-      r = -90;
-      return [x,y,r]
-      
-    case 4:
-      x = 700;
-      y = 500;
-      r = 45;
-      return [x,y,r]
-      
-    case 5:
-      x = 250;
-      y = 500;
-      r = 0;
-      return [x,y,r]
-      
-    case 6:
-      x = -350;
-      y = 500;
-      r = 45;
-      return [x,y,r]
-      
-    case 7:
-      x = -350;
-      y = 350;
-      r = 90;
-      return [x,y,r]
-      
-  }
-}
-
-let Amis = []
-
-setInterval(function () {
-  compteur++;
-  let position = placeAmis(entierAlea(8))
-  console.log(position,entierAlea(8))
-  Amis.push({ x: 0, y: 0, id: compteur });
-  updateDOM();
-}, 1000);
-
-function affichageEnemmi(){
-
-    let join = gameBox.selectAll("path").data(Amis, (d) => d.id);
-
-    join
-      .enter()
-      .append("path")
-      .attr(
-        "d",
-        "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
-      )
-      .attr("class","Amis")
-      .style("stroke", "black");
-  
-    join.exit().remove();
-  
-    updateAmis();
-  }
-
-
-  function updateAmis(){
-
-  
-  gameBox
-  .selectAll(".Amis")
-  .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
-
-}
-
-setInterval(function () {
-    Amis.forEach(Ami=>{
-
-console.log(Ami)
-
-    })
-        
-    updateAmis();
-  }, 10);
-
-    
-
-    

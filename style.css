@@ -26,6 +26,7 @@ h1 {
 .gameBox {
     /* min-width: 50vw;
     min-height: 80vh; */
+    position: relative;
     background-color: skyblue;
     border: solid;
     margin: 10px 0px;
