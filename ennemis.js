@@ -108,7 +108,7 @@ function placeAmis(position) {
       c.x -= 1;
       c.y += 1;
     }else if(c.x >= 0 && c.y >= 0){
-      c.x -= 1;
+      c.x -= 1; 
       c.y -= 1;
     }else if(c.x <= 0 && c.y >= 0){
       c.x += 1;
@@ -117,7 +117,7 @@ function placeAmis(position) {
   }
 
   function amiVisible(c) {
-    if(((c.x > 1) || (c.x < -1)) && ((c.y > 1) || (c.y < -1))){
+    if((c.x != 0) && (c.y !=0)){
       return true;
     }
   }
