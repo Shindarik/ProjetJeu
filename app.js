@@ -40,14 +40,21 @@ function updateDOM() {
 
 function updateTransforms() {
   gameBox
-    .selectAll(".Tires")
+    .selectAll(".Tirs")
     .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 }
 
 // initialement: on ajoute les Ã©toiles
 updateDOM();
 
+let posMouse = []
+let posMouseComp = 0;
+
+// posMouse[posMouseComp] = [pointer[0], pointer[1]];
+// posMouseComp++;
+
 function deplacePoint(c) {
+
   if (mouseX >= 0 && mouseY >= 0) {
     c.x += 1;
     c.y += 1;
@@ -74,7 +81,9 @@ setInterval(function () {
     //tous les points dans coordonnÃ©es ont pointVisible(c) = true
     updateTransforms();
   } else {
+
     //au moins un point cachÃ©, on le retire du tableau
+    console.log("fe");
     tabCoord = tabCoord.filter(pointVisible);
     updateDOM();
   }
