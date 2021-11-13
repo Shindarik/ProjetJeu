@@ -52,14 +52,12 @@ function deplacePoint(c) {
 
   if (c.coordMX >= 0 && c.coordMY >= 0) {
 
-    setInterval(() => {
-      while(c.x != c.coordMX){
-        c.x += 1;
-      }
-      while(c.y != c.coordMY){
-        c.y += 1;
-      }
-    }, 1000);
+    while(c.x != c.coordMX){
+      c.x += 1;
+    }
+    while(c.y != c.coordMY){
+      c.y += 1;
+    }
 
   } else if (c.coordMX <= 0 && c.coordMY >= 0) {
     c.x -= 1;
