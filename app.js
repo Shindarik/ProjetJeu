@@ -47,24 +47,27 @@ function updateTransforms() {
 // initialement: on ajoute les Ã©toiles
 updateDOM();
 
-let posMouse = []
-let posMouseComp = 0;
-
-// posMouse[posMouseComp] = [pointer[0], pointer[1]];
-// posMouseComp++;
 
 function deplacePoint(c) {
 
-  if (mouseX >= 0 && mouseY >= 0) {
-    c.x += 1;
-    c.y += 1;
-  } else if (mouseX <= 0 && mouseY >= 0) {
+  if (c.coordMX >= 0 && c.coordMY >= 0) {
+
+    setInterval(() => {
+      while(c.x != c.coordMX){
+        c.x += 1;
+      }
+      while(c.y != c.coordMY){
+        c.y += 1;
+      }
+    }, 1000);
+
+  } else if (c.coordMX <= 0 && c.coordMY >= 0) {
     c.x -= 1;
     c.y += 1;
-  } else if (mouseX <= 0 && mouseY <= 0) {
+  } else if (c.coordMX <= 0 && c.coordMY <= 0) {
     c.x -= 1;
     c.y -= 1;
-  } else if (mouseX >= 0 && mouseY <= 0) {
+  } else if (c.coordMX >= 0 && c.coordMY <= 0) {
     c.x += 1;
     c.y -= 1;
   }
@@ -89,13 +92,21 @@ setInterval(function () {
   }
 }, 10);
 
+let posMouse = []
+let posMouseComp = 0;
+
 //toutes les 1000ms, on insÃ¨re une Ã©toile
 setInterval(function () {
   compteur++;
+  posMouse[posMouseComp] = [Math.floor(mouseX), Math.floor(mouseY)];
   tabCoord.push({
     x: 0,
     y: 0,
-    id: compteur
+    id: compteur,
+    coordMX: posMouse[posMouseComp][0],
+    coordMY: posMouse[posMouseComp][1]
   });
+
   updateDOM();
+  posMouseComp++;
 }, 1000);
