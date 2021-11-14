@@ -49,7 +49,13 @@ updateDOM();
 
 function deplacePoint(c) {
 
-  console.log(Math.abs(c.coordMX / c.coordMY));
+  if(c.coordMX == 0){
+    c.coordMX = 0.01;
+  }
+
+  if(c.coordMY == 0){
+    c.coordMY = 0.01;
+  }
 
   if (c.coordMX >= 0) {
     c.x += (Math.abs(c.coordMX / c.coordMY));

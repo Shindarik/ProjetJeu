@@ -11,19 +11,19 @@ function entierMinMax(min, max) {
 function amisRandom(r) {
 
   if (r >= -250 && r <= 250) {
-    
+
     let posX = [-350, 350];
     x = posX[entierAlea(2)];
     y = r;
     return [x, y];
-    
+
   } else if (r < -250 || r > 250) {
-    
+
     let posY = [-250, 250];
     x = entierMinMax(-350, 350);
     y = posY[entierAlea(2)];
     return [x, y];
-    
+
   }
 }
 
@@ -70,6 +70,18 @@ function updateAmis() {
 }
 
 function deplaceAmis(c) {
+
+  // if (c.x <= 0) {
+  //   c.x += (Math.abs(c.x/ c.y));
+  // } else if (c.x >= 0) {
+  //   c.x -= (Math.abs(c.x / c.y));
+  // }
+
+  // if (c.y <= 0) {
+  //   c.y += (Math.abs(c.x / c.y));
+  // } else if (c.y >= 0) {
+  //   c.y -= (Math.abs(c.x / c.y));
+  // }
 
   if (c.x <= 0 && c.y <= 0) {
     c.x += 1;
