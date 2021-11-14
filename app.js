@@ -41,50 +41,49 @@ function updateDOM() {
 function updateTransforms() {
   gameBox
     .selectAll(".Tirs")
-    .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
+    .attr("transform", (d) => `translate(${Math.floor(d.x)}, ${Math.floor(d.y)})`);
 }
 
-// initialement: on ajoute les Ã©toiles
 updateDOM();
 
 
 function deplacePoint(c) {
 
-  if (c.coordMX >= 0 && c.coordMY >= 0) {
+  console.log(Math.abs(c.coordMX / c.coordMY));
 
-    while(c.x != c.coordMX){
-      c.x += 1;
-    }
-    while(c.y != c.coordMY){
-      c.y += 1;
-    }
+  if (c.coordMX >= 0) {
+    c.x += (Math.abs(c.coordMX / c.coordMY));
+  } else if (c.coordMX <= 0) {
+    c.x -= (Math.abs(c.coordMX / c.coordMY));
+  }
 
-  } else if (c.coordMX <= 0 && c.coordMY >= 0) {
-    c.x -= 1;
-    c.y += 1;
-  } else if (c.coordMX <= 0 && c.coordMY <= 0) {
-    c.x -= 1;
-    c.y -= 1;
-  } else if (c.coordMX >= 0 && c.coordMY <= 0) {
-    c.x += 1;
-    c.y -= 1;
+  if (c.coordMY >= 0) {
+    c.y += (Math.abs(c.coordMY / c.coordMX));
+  } else if (c.coordMY <= 0) {
+    c.y -= (Math.abs(c.coordMY / c.coordMX));
   }
 }
 
 function pointVisible(c) {
-  return c.x < 350 && c.x > -350 && c.y < 250 && c.y > -250;
+
+  if ((c.x <= -350 && c.x >= 350) || (c.y <= -250 && c.y >= 250)) {
+    return false;
+  } else if (c.x == c.coordMX && c.y == c.coordMY) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
-//toutes les 100ms, on ne modifie que les coordonnÃ©es
 setInterval(function () {
-  tabCoord.forEach(deplacePoint);
-  if (tabCoord.every(pointVisible)) {
-    //tous les points dans coordonnÃ©es ont pointVisible(c) = true
+
+  tabCoord.forEach(tir => {
+    deplacePoint(tir);
+  });
+
+  if (tabCoord.every(pointVisible) == true) {
     updateTransforms();
   } else {
-
-    //au moins un point cachÃ©, on le retire du tableau
-    console.log("fe");
     tabCoord = tabCoord.filter(pointVisible);
     updateDOM();
   }
@@ -93,7 +92,6 @@ setInterval(function () {
 let posMouse = []
 let posMouseComp = 0;
 
-//toutes les 1000ms, on insÃ¨re une Ã©toile
 setInterval(function () {
   compteur++;
   posMouse[posMouseComp] = [Math.floor(mouseX), Math.floor(mouseY)];

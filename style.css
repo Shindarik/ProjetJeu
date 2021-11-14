@@ -9,7 +9,7 @@ body {
     min-width: 100vw;
     margin: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     /* background-color: skyblue; */
@@ -22,30 +22,29 @@ h1 {
     -ms-user-select: none;
     user-select: none;
     margin: 0;
+    font-size: 4rem;
+    font-family: "Delius Swash Caps", sans-serif;
 }
 
-.cloud{
+.cloud {
 
     width: 777px;
     z-index: 10;
     position: relative;
     pointer-events: none;
-        
-    }
-    
-    .cloud img{
-    
-        max-height: 100%;
-        min-height: 100%;
-        pointer-events: none;
-    
-    }
+}
+
+.cloud img {
+
+    max-height: 100%;
+    min-height: 100%;
+    pointer-events: none;
+}
 
 .gameBox {
     position: absolute;
     background-color: skyblue;
-    border: solid;
-    margin: 10px 0px;
+    margin: 30px 0px;
 }
 
 footer {
@@ -53,4 +52,5 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: sans-serif;
 }
