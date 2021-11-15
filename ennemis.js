@@ -117,4 +117,4 @@ setInterval(function () {
     affichageEnemmi();
   }
 
-}, 10);
+}, 30);

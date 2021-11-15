@@ -28,10 +28,11 @@ function updateDOM() {
     .append("path")
     .attr(
       "d",
-      "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
+      "M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"
     )
     .attr("class", "Tirs")
-    .style("stroke", "red");
+    .style("stroke", "black")
+    .style("fill", "#F05534");
 
   join.exit().remove();
 
