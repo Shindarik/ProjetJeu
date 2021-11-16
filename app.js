@@ -51,11 +51,11 @@ updateDOM();
 function deplacePoint(c) {
 
   if(c.coordMX == 0){
-    c.coordMX = 0.01;
+    c.coordMX = 1;
   }
 
   if(c.coordMY == 0){
-    c.coordMY = 0.01;
+    c.coordMY = 1;
   }
 
   if (c.coordMX >= 0) {
@@ -96,7 +96,7 @@ setInterval(function () {
   }
 }, 10);
 
-let posMouse = []
+let posMouse = [];
 let posMouseComp = 0;
 
 setInterval(function () {
