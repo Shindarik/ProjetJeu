@@ -81,7 +81,7 @@ setInterval(function () {
     });
 
     if (tabCoord.every(pointVisible) == true) {
-        if (tabCoord.every(collision) == true) {
+        if (tabCoord.every(collision) == true) { 
             tabCoord = tabCoord.filter(collision);
             updateDOM();
         }
