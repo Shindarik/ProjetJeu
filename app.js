@@ -73,7 +73,7 @@ function deplacePoint(c) {
 
 function pointVisible(c) {
 
-  if ((c.x <= -350 && c.x >= 350) || (c.y <= -250 && c.y >= 250)) {
+  if ((c.x <= -350 || c.x >= 350) || (c.y <= -250 || c.y >= 250)) {
     return false;
   } else if (c.x == c.coordMX && c.y == c.coordMY) {
     return false;
