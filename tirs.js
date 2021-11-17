@@ -42,10 +42,13 @@ function deplacePoint(c) {
 function collision(c) {
     for (let i = 0; i < Amis.length; i++) {
 
-        if ((Math.floor(c.x) <= (Amis[i].x + 20) && Math.floor(c.x) >= (Amis[i].x - 20)) && (Math.floor(c.y) <= (Amis[i].y + 20) && Math.floor(c.y) >= (Amis[i].y - 20))) {
+        if ((Math.floor(c.x) <= (Amis[i].x + 30) && Math.floor(c.x) >= (Amis[i].x - 30)) && (Math.floor(c.y) <= (Amis[i].y + 30) && Math.floor(c.y) >= (Amis[i].y - 30))) {
+            console.log("touché");
             return true;
         }
     }
+
+    return false;
 }
 
 function pointVisible(c) {
@@ -57,6 +60,17 @@ function pointVisible(c) {
     }
 }
 
+function suppressionDansTableau(tableau, critere) {
+    let suppression=false;
+    for (let i=tableau.length-1; i>=0; i-- ) {
+        if (critere(tableau[i])) {
+            tableau.splice(i,1);
+            suppression=true;
+        }
+    }
+    return suppression;
+}
+
 setInterval(function () {
 
     tabCoord.forEach(tir => {
@@ -64,10 +78,12 @@ setInterval(function () {
     });
 
     if (tabCoord.every(pointVisible) == true) {
-        if (tabCoord.every(collision) == true) { 
-            tabCoord = tabCoord.filter(collision);
-            updateDOM();
-        }
+        tabCoord.forEach((d) => {
+            if (collision(d) == true) {
+                tabCoord = suppressionDansTableau(tabCoord, collision);
+                updateDOM();
+            }
+        });
         updateTransforms();
     } else {
         tabCoord = tabCoord.filter(pointVisible);
@@ -80,7 +96,7 @@ let posMouseComp = 0;
 
 setInterval(function () {
     compteur++;
-    let norme = Math.sqrt(mouseX*mouseX + mouseY*mouseY);
+    let norme = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
     tabCoord.push({
         x: 0,
         y: 0,

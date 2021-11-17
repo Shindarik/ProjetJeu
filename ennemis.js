@@ -66,10 +66,10 @@ function affichageEnemmi() {
 
   join
     .enter()
-    .append("img")
+    .append("image")
     .attr("href", "./images/sadamis.svg")
-    .attr("height", "85px")
-    .attr("width", "85px")
+    .attr("height", "60px")
+    .attr("width", "60px")
     .attr("class", "Amis");
 
   join.exit().remove();
@@ -82,7 +82,7 @@ function updateAmis() {
 
   gameBox
     .selectAll(".Amis")
-    .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
+    .attr("transform", (d) => `translate(${d.x - 30}, ${d.y - 30})`);
 
 }
 
