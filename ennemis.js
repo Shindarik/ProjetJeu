@@ -41,19 +41,36 @@ setInterval(function () {
 }, 1000);
 
 
+// function affichageEnemmi() {
+
+//   let join = gameBox.selectAll(".Amis").data(Amis, (d) => d.id);
+
+//   join
+//     .enter()
+//     .append("path")
+//     .attr(
+//       "d",
+//       "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
+//     )
+//     .attr("class", "Amis")
+//     .style("stroke", "black");
+
+//   join.exit().remove();
+
+//   updateAmis();
+// }
+
 function affichageEnemmi() {
 
   let join = gameBox.selectAll(".Amis").data(Amis, (d) => d.id);
 
   join
     .enter()
-    .append("path")
-    .attr(
-      "d",
-      "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
-    )
-    .attr("class", "Amis")
-    .style("stroke", "black");
+    .append("img")
+    .attr("href", "./images/sadamis.svg")
+    .attr("height", "85px")
+    .attr("width", "85px")
+    .attr("class", "Amis");
 
   join.exit().remove();
 
