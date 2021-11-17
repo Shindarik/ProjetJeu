@@ -35,25 +35,8 @@ updateDOM();
 
 function deplacePoint(c) {
 
-    if (c.coordMX == 0) {
-        c.coordMX = 1;
-    }
-
-    if (c.coordMY == 0) {
-        c.coordMY = 1;
-    }
-
-    if (c.coordMX >= 0) {
-        c.x += (Math.abs(c.coordMX / c.coordMY));
-    } else if (c.coordMX <= 0) {
-        c.x -= (Math.abs(c.coordMX / c.coordMY));
-    }
-
-    if (c.coordMY >= 0) {
-        c.y += (Math.abs(c.coordMY / c.coordMX));
-    } else if (c.coordMY <= 0) {
-        c.y -= (Math.abs(c.coordMY / c.coordMX));
-    }
+    c.x += c.coordMX * 4;
+    c.y += c.coordMY * 4;
 }
 
 function collision(c) {
@@ -97,16 +80,14 @@ let posMouseComp = 0;
 
 setInterval(function () {
     compteur++;
-    posMouse[posMouseComp] = [Math.floor(mouseX), Math.floor(mouseY)];
+    let norme = Math.sqrt(mouseX*mouseX + mouseY*mouseY);
     tabCoord.push({
         x: 0,
         y: 0,
         id: compteur,
-        coordMX: posMouse[posMouseComp][0],
-        coordMY: posMouse[posMouseComp][1]
+        coordMX: mouseX / norme,
+        coordMY: mouseY / norme
     });
 
     updateDOM();
-    posMouseComp++;
-
 }, 1000);
