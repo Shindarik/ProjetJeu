@@ -1,4 +1,5 @@
 let compteurAmis = 0;
+let speedMov = 1;
 
 function entierAlea(n) {
   return Math.floor(Math.random() * n);
@@ -32,33 +33,16 @@ let Amis = []
 setInterval(function () {
   compteurAmis++;
   let position = amisRandom(entierMinMax(-350, 350));
+  // let norme = Math.sqrt(position[0] * position[0] + position[1] * position[1]);
   Amis.push({
+    // nX: position[0] / norme,
+    // ny: position[1] / norme,
     x: position[0],
     y: position[1],
     id: compteurAmis
   });
   affichageEnemmi();
 }, 1000);
-
-
-// function affichageEnemmi() {
-
-//   let join = gameBox.selectAll(".Amis").data(Amis, (d) => d.id);
-
-//   join
-//     .enter()
-//     .append("path")
-//     .attr(
-//       "d",
-//       "M0,0 L-10,0 M0,0 L8.1,5.9 M0,0 L8.1,-5.9 M0,0 L-3.1,9.5 M0,0 L-3.1,-9.5"
-//     )
-//     .attr("class", "Amis")
-//     .style("stroke", "black");
-
-//   join.exit().remove();
-
-//   updateAmis();
-// }
 
 function affichageEnemmi() {
 
@@ -86,42 +70,41 @@ function updateAmis() {
 
 }
 
+function setMovSpeed(){
+  speedMov = speedMov * 2;
+  return speedMov
+}
+
 function deplaceAmis(c) {
 
-  // if (c.x <= 0) {
-  //   c.x += (Math.abs(c.x/ c.y));
-  // } else if (c.x >= 0) {
-  //   c.x -= (Math.abs(c.x / c.y));
-  // }
+  console.log(speedMov);
 
-  // if (c.y <= 0) {
-  //   c.y += (Math.abs(c.x / c.y));
-  // } else if (c.y >= 0) {
-  //   c.y -= (Math.abs(c.x / c.y));
-  // }
+  // c.x += c.nX;
+  // c.y += c.nY;
 
-  if (c.x <= 0 && c.y <= 0) {
-    c.x += 1;
-    c.y += 1;
+ if (c.x <= 0 && c.y <= 0) {
+    c.x += speedMov;
+    c.y += speedMov;
   } else if (c.x >= 0 && c.y <= 0) {
-    c.x -= 1;
-    c.y += 1;
+    c.x -= speedMov;
+    c.y += speedMov;
   } else if (c.x >= 0 && c.y >= 0) {
-    c.x -= 1;
-    c.y -= 1;
+    c.x -= speedMov;
+    c.y -= speedMov;
   } else if (c.x <= 0 && c.y >= 0) {
-    c.x += 1;
-    c.y -= 1;
+    c.x += speedMov;
+    c.y -= speedMov;
   }
 }
 
 function amiVisible(c) {
-  if ((c.x <= 0 && c.x >= -1) && (c.y <= 0 && c.y >= -1)) {
+  if ((c.x <= 30 && c.x >= -30) && (c.y <= 30 && c.y >= -30)) {
     return false;
   } else {
     return true;
   }
 }
+
 
 setInterval(function () {
 
@@ -130,6 +113,13 @@ setInterval(function () {
   if (Amis.every(amiVisible)) {
     updateAmis();
   } else {
+    if(vieJoueur>0){
+      vieJoueur--;
+      if(vieJoueur == 0){
+        alert("Game Over !");
+        location.reload();
+      }
+    }
     Amis = Amis.filter(amiVisible);
     affichageEnemmi();
   }

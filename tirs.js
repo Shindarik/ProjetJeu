@@ -1,12 +1,12 @@
 let compteur = 0;
-let tabCoord = [];
+let tirArray = [];
 
 function entierAlea(n) {
     return Math.floor(Math.random() * n);
 }
 
 function updateDOM() {
-    let join = gameBox.selectAll(".Tirs").data(tabCoord, (d) => d.id);
+    let join = gameBox.selectAll(".Tirs").data(tirArray, (d) => d.id);
 
     join
         .enter()
@@ -21,13 +21,13 @@ function updateDOM() {
 
     join.exit().remove();
 
-    updateTransforms();
+    affichageTirs();
 }
 
-function updateTransforms() {
+function affichageTirs() {
     gameBox
         .selectAll(".Tirs")
-        .attr("transform", (d) => `translate(${Math.floor(d.x)}, ${Math.floor(d.y)})`);
+        .attr("transform", (d) => `translate(${Math.floor(d.x) - 20}, ${Math.floor(d.y) - 20})`);
 }
 
 updateDOM();
@@ -40,15 +40,13 @@ function deplacePoint(c) {
 }
 
 function collision(c) {
-    for (let i = 0; i < Amis.length; i++) {
 
-        if ((Math.floor(c.x) <= (Amis[i].x + 30) && Math.floor(c.x) >= (Amis[i].x - 30)) && (Math.floor(c.y) <= (Amis[i].y + 30) && Math.floor(c.y) >= (Amis[i].y - 30))) {
+    return suppressionDansTableau(Amis, (a) =>{
+        if ((Math.floor(c.x) <= (a.x + 20) && Math.floor(c.x) >= (a.x - 20)) && (Math.floor(c.y) <= (a.y + 20) && Math.floor(c.y) >= (a.y - 20))) {
             console.log("touché");
             return true;
         }
-    }
-
-    return false;
+    });
 }
 
 function pointVisible(c) {
@@ -62,7 +60,7 @@ function pointVisible(c) {
 
 function suppressionDansTableau(tableau, critere) {
     let suppression=false;
-    for (let i=tableau.length-1; i>=0; i-- ) {
+    for (let i=tableau.length-1; i>=0; i--) {
         if (critere(tableau[i])) {
             tableau.splice(i,1);
             suppression=true;
@@ -73,20 +71,29 @@ function suppressionDansTableau(tableau, critere) {
 
 setInterval(function () {
 
-    tabCoord.forEach(tir => {
+    tirArray.forEach(tir => {
         deplacePoint(tir);
     });
 
-    if (tabCoord.every(pointVisible) == true) {
-        tabCoord.forEach((d) => {
+    if (tirArray.every(pointVisible) == true) {
+        suppressionDansTableau(tirArray, (d) =>{
             if (collision(d) == true) {
-                tabCoord = suppressionDansTableau(tabCoord, collision);
+                console.log(score);
+                console.log(previousScore);
                 updateDOM();
+                affichageEnemmi();
+                if(score >= previousScore+100){
+                    setMovSpeed();
+                    previousScore = score;
+                }
+                score += 10;
+                return true;
             }
         });
-        updateTransforms();
+        updateDOM();
+        affichageTirs();
     } else {
-        tabCoord = tabCoord.filter(pointVisible);
+        tirArray = tirArray.filter(pointVisible);
         updateDOM();
     }
 }, 10);
@@ -97,7 +104,7 @@ let posMouseComp = 0;
 setInterval(function () {
     compteur++;
     let norme = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
-    tabCoord.push({
+    tirArray.push({
         x: 0,
         y: 0,
         id: compteur,
@@ -106,4 +113,4 @@ setInterval(function () {
     });
 
     updateDOM();
-}, 1000);
+}, 500);
