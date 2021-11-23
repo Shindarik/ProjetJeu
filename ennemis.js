@@ -31,17 +31,22 @@ function amisRandom(r) {
 let Amis = []
 
 setInterval(function () {
-  compteurAmis++;
-  let position = amisRandom(entierMinMax(-350, 350));
-  let norme = Math.sqrt(position[0] * position[0] + position[1] * position[1]);
-  Amis.push({
-    nX: position[0] / norme,
-    nY: position[1] / norme,
-    x: position[0],
-    y: position[1],
-    id: compteurAmis
-  });
-  affichageEnemmi();
+
+  if(!pause){
+    
+    compteurAmis++;
+    let position = amisRandom(entierMinMax(-350, 350));
+    let norme = Math.sqrt(position[0] * position[0] + position[1] * position[1]);
+    Amis.push({
+      nX: position[0] / norme,
+      nY: position[1] / norme,
+      x: position[0],
+      y: position[1],
+      id: compteurAmis
+    });
+    affichageEnemmi();
+  }
+
 }, 1000);
 
 function affichageEnemmi() {
@@ -70,8 +75,8 @@ function updateAmis() {
 
 }
 
-function setMovSpeed(){
-  speedMov = speedMov * 2;
+function setMovSpeed() {
+  speedMov = speedMov * 1.2;
   return speedMov
 }
 
@@ -85,30 +90,56 @@ function deplaceAmis(c) {
 }
 
 function amiVisible(c) {
-  if ((c.x <= 30 && c.x >= -30) && (c.y <= 30 && c.y >= -30)) {
+  if ((c.x <= 40 && c.x >= -40) && (c.y <= 40 && c.y >= -40)) {
     return false;
   } else {
     return true;
   }
 }
 
+function blink() {
+  d3.select(".jony").transition()
+    .duration(200)
+    .style("opacity", "0")
+    .transition()
+    .duration(200)
+    .style("opacity", "1")
+    .transition()
+    .duration(200)
+    .style("opacity", "0")
+    .transition()
+    .duration(200)
+    .style("opacity", "1")
+    .transition()
+    .duration(200)
+    .style("opacity", "0")
+    .transition()
+    .duration(200)
+    .style("opacity", "1");
+}
+
 
 setInterval(function () {
 
-  Amis.forEach(deplaceAmis);
+  if(!pause){
 
-  if (Amis.every(amiVisible)) {
-    updateAmis();
-  } else {
-    if(vieJoueur>0){
-      vieJoueur--;
-      if(vieJoueur == 0){
-        alert("Game Over !");
-        location.reload();
+    Amis.forEach(deplaceAmis);
+  
+    if (Amis.every(amiVisible)) {
+      updateAmis();
+    } else {
+      if (vieJoueur > 0) {
+        vieJoueur--;
+        blink();
+        if (vieJoueur == 0) {
+          alert("Game Over !");
+          location.reload();
+        }
       }
+      Amis = Amis.filter(amiVisible);
+      affichageEnemmi();
     }
-    Amis = Amis.filter(amiVisible);
-    affichageEnemmi();
   }
+
 
 }, 30);

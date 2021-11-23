@@ -71,46 +71,60 @@ function suppressionDansTableau(tableau, critere) {
 
 setInterval(function () {
 
-    tirArray.forEach(tir => {
-        deplacePoint(tir);
-    });
-
-    if (tirArray.every(pointVisible) == true) {
-        suppressionDansTableau(tirArray, (d) =>{
-            if (collision(d) == true) {
-                console.log(score);
-                console.log(previousScore);
-                updateDOM();
-                affichageEnemmi();
-                if(score >= previousScore+100){
-                    setMovSpeed();
-                    previousScore = score;
-                }
-                score += 10;
-                return true;
-            }
+    if(!pause){
+        
+        d3.select(".scoreText").text("Score : "+score);
+        d3.select(".lifeText").text("Vie(s) : "+vieJoueur);
+    
+        tirArray.forEach(tir => {
+            deplacePoint(tir);
         });
-        updateDOM();
-        affichageTirs();
-    } else {
-        tirArray = tirArray.filter(pointVisible);
-        updateDOM();
+    
+        if (tirArray.every(pointVisible) == true) {
+            suppressionDansTableau(tirArray, (d) =>{
+                if (collision(d) == true) {
+                    updateDOM();
+                    affichageEnemmi();
+                    if(score >= previousScore+100){
+                        setMovSpeed();
+                        previousScore = score;
+                    }
+                    score += 10;
+                    return true;
+                }
+            });
+            updateDOM();
+            affichageTirs();
+        } else {
+            tirArray = tirArray.filter(pointVisible);
+            updateDOM();
+        }
     }
+
 }, 10);
 
 let posMouse = [];
 let posMouseComp = 0;
 
 setInterval(function () {
-    compteur++;
-    let norme = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
-    tirArray.push({
-        x: 0,
-        y: 0,
-        id: compteur,
-        coordMX: mouseX / norme,
-        coordMY: mouseY / norme
-    });
 
-    updateDOM();
+    if(!pause){
+
+        if(!isNaN(mouseX)){
+    
+            compteur++;
+            let norme = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
+            tirArray.push({
+                x: 0,
+                y: 0,
+                id: compteur,
+                coordMX: mouseX / norme,
+                coordMY: mouseY / norme
+            });
+        
+            updateDOM();
+        }
+    }
+
+
 }, 500);
