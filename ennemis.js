@@ -33,10 +33,10 @@ let Amis = []
 setInterval(function () {
   compteurAmis++;
   let position = amisRandom(entierMinMax(-350, 350));
-  // let norme = Math.sqrt(position[0] * position[0] + position[1] * position[1]);
+  let norme = Math.sqrt(position[0] * position[0] + position[1] * position[1]);
   Amis.push({
-    // nX: position[0] / norme,
-    // ny: position[1] / norme,
+    nX: position[0] / norme,
+    ny: position[1] / norme,
     x: position[0],
     y: position[1],
     id: compteurAmis
@@ -79,22 +79,22 @@ function deplaceAmis(c) {
 
   console.log(speedMov);
 
-  // c.x += c.nX;
-  // c.y += c.nY;
+  c.x += c.nX;
+  c.y += c.nY;
 
- if (c.x <= 0 && c.y <= 0) {
-    c.x += speedMov;
-    c.y += speedMov;
-  } else if (c.x >= 0 && c.y <= 0) {
-    c.x -= speedMov;
-    c.y += speedMov;
-  } else if (c.x >= 0 && c.y >= 0) {
-    c.x -= speedMov;
-    c.y -= speedMov;
-  } else if (c.x <= 0 && c.y >= 0) {
-    c.x += speedMov;
-    c.y -= speedMov;
-  }
+//  if (c.x <= 0 && c.y <= 0) {
+//     c.x += speedMov;
+//     c.y += speedMov;
+//   } else if (c.x >= 0 && c.y <= 0) {
+//     c.x -= speedMov;
+//     c.y += speedMov;
+//   } else if (c.x >= 0 && c.y >= 0) {
+//     c.x -= speedMov;
+//     c.y -= speedMov;
+//   } else if (c.x <= 0 && c.y >= 0) {
+//     c.x += speedMov;
+//     c.y -= speedMov;
+//   }
 }
 
 function amiVisible(c) {
