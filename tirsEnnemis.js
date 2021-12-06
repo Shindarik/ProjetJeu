@@ -48,7 +48,7 @@ function tirsEnnemisVisible(c) {
     }
 }
 
-function tirsEnnemisBloqué(c) {
+function tirsEnnemisBloque(c) {
 
     coordTirs = 90 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
     let coordTirsOpposite = (coordTirs+180) % 360;
@@ -57,25 +57,31 @@ function tirsEnnemisBloqué(c) {
     let coordTirsMax = (coordTirsOpposite + 20) % 360;
     let coordTirsMin = (coordTirsOpposite - 20) % 360;
 
+
     console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
-    
-    if ((coord <= coordTirsMax) && (coord >= coordTirsMin)) {
-        console.log("uuioi");
+
+    if(coordTirsMax < coordTirsMin){
+
+      if ((coord < coordTirsMax) && (coord > coordTirsMin)) {
+        console.log("non");
+        return false;
+      } else if((coord >= coordTirsMax) && (coord <= coordTirsMin)){
+        console.log("oui");
         return true;
-    } else {
-      return false;
+      }
+
+    }else{
+
+      if ((coord > coordTirsMax) && (coord < coordTirsMin)) {
+        console.log("non");
+        return false;
+      } else if((coord <= coordTirsMax) && (coord >= coordTirsMin)){
+        console.log("oui");
+        return true;
+      }
     }
+    
 
-  }
-
-function collisionTirsEnnemis(c) {
-
-    return suppressionDansTableau(tirsEnnemisArray, (a) =>{
-        if ((Math.floor(c.x) <= (a.x + 20) && Math.floor(c.x) >= (a.x - 20)) && (Math.floor(c.y) <= (a.y + 20) && Math.floor(c.y) >= (a.y - 20))) {
-            console.log("touché");
-            return true;
-        }
-    });
 }
 
 setInterval(function () {
@@ -86,18 +92,11 @@ setInterval(function () {
     
       if (tirsEnnemisArray.every(tirsEnnemisVisible)) {
         updateTirsEnnemis();
-      }else if (tirsEnnemisArray.every(tirsEnnemisBloqué) == true) {
+      }else if (tirsEnnemisArray.every(tirsEnnemisBloque) == true) {
         console.log("bloqué");
         console.log(vieJoueur);
-        suppressionDansTableau(tirsEnnemisArray, (d) =>{
-            if (collisionTirsEnnemis(d) == true) {
-                updateTirsEnnemis();
-                affichageTirsEnnemis();
-                return true;
-            }
-        });
+        tirsEnnemisArray = tirsEnnemisArray.filter(tirsEnnemisVisible);
         updateTirsEnnemis();
-        affichageTirsEnnemis();
       } else {
         if (vieJoueur > 0) {
           vieJoueur--;
@@ -118,7 +117,7 @@ setInterval(function () {
     }
   
   
-  }, 30);
+  }, 20);
 
 
 setInterval(function () {
