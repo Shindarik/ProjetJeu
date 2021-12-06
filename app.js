@@ -19,8 +19,6 @@ gameBox.on("mousemove", function (e) {
     mouseY = pointer[1];
   
     coord = 90 - (Math.atan2(pointer[0], pointer[1]) * 180) / Math.PI;
-
-    console.log(coord);
   
     d3.select(".jony").style("transform", `rotate(${coord}deg)`);
   }

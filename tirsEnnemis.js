@@ -51,14 +51,21 @@ function tirsEnnemisVisible(c) {
 function tirsEnnemisBloqué(c) {
 
     coordTirs = 90 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
+    let coordTirsOpposite = (coordTirs+180) % 360;
 
-    console.log("coord : "+coord, "coordTirs : "+coordTirs);
+    
+    let coordTirsMax = (coordTirsOpposite + 20) % 360;
+    let coordTirsMin = (coordTirsOpposite - 20) % 360;
 
-    if ((coord <= (coordTirs+180+20) % 360) && (coord >= (coordTirs+180-20) % 360)) {
-      return true;
+    console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
+    
+    if ((coord <= coordTirsMax) && (coord >= coordTirsMin)) {
+        console.log("uuioi");
+        return true;
     } else {
       return false;
     }
+
   }
 
 function collisionTirsEnnemis(c) {
