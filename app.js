@@ -6,6 +6,7 @@ let vieJoueur = 3;
 let score = 0;
 let previousScore = 0;
 let pause = false;
+let gameOver = false;
 
 
 gameBox.on("mousemove", function (e) {
@@ -26,10 +27,10 @@ gameBox.on("mousemove", function (e) {
 
 
 window.addEventListener("keypress", (e) =>{
-  if(e.key == 'p' && pause == false){
+  if(e.key == 'p' && pause == false && gameOver == false){
     pause = true;
     d3.select(".pauseScreen").style("display", "flex");
-  }else if(e.key == 'p' && pause == true){
+  }else if(e.key == 'p' && pause == true && gameOver == false){
     pause = false;
     d3.select(".pauseScreen").style("display", "none");
   }
