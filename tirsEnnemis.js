@@ -51,26 +51,13 @@ function tirsEnnemisVisible(c) {
 function tirsEnnemisBloque(c) {
 
     coordTirs = 90 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
-    let coordTirsOpposite = (coordTirs+180) % 360;
-
-    
+    let coordTirsOpposite = (coordTirs+ 180) % 360;
     let coordTirsMax = (coordTirsOpposite + 20) % 360;
     let coordTirsMin = (coordTirsOpposite - 20) % 360;
 
 
     console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
 
-    if(coordTirsMax < coordTirsMin){
-
-      if ((coord < coordTirsMax) && (coord > coordTirsMin)) {
-        console.log("non");
-        return false;
-      } else if((coord >= coordTirsMax) && (coord <= coordTirsMin)){
-        console.log("oui");
-        return true;
-      }
-
-    }else{
 
       if ((coord > coordTirsMax) && (coord < coordTirsMin)) {
         console.log("non");
@@ -79,9 +66,6 @@ function tirsEnnemisBloque(c) {
         console.log("oui");
         return true;
       }
-    }
-    
-
 }
 
 setInterval(function () {
@@ -92,9 +76,8 @@ setInterval(function () {
     
       if (tirsEnnemisArray.every(tirsEnnemisVisible)) {
         updateTirsEnnemis();
-      }else if (tirsEnnemisArray.every(tirsEnnemisBloque) == true) {
+      }else if (tirsEnnemisArray.every(tirsEnnemisBloque)) {
         console.log("bloqué");
-        console.log(vieJoueur);
         tirsEnnemisArray = tirsEnnemisArray.filter(tirsEnnemisVisible);
         updateTirsEnnemis();
       } else {
@@ -141,4 +124,4 @@ setInterval(function () {
     }
 
 
-}, 2000);
+}, 3000);
