@@ -22,18 +22,26 @@
         <p>Pressez "P" pour reprendre</p>
     </div>
 
-    <div class="cloud"><img src="images/clouds.svg" alt=""></div>
+    <div class="gameOverScreen">
+        <h2>Game Over !</h2>
+        <p>Votre score est de : <span></span></p>
+        <button>Cliquez ici pour rejouer</button>
+    </div>
+
+    <div class="cloud">
+        <img src="images/clouds.svg" alt="">
+    </div>
 
     <svg class="gameBox" xmlns="http://www.w3.org/2000/svg" viewBox="-350 -250 700 500" width="700" height="500">
 
-        <text class="scoreText" x="-300" y="-200" style="font-family: 'Delius Swash Caps';
+        <text class="scoreText" x="-300" y="-190" style="font-family: 'Delius Swash Caps';
                font-size  : 24;
                fill       : black;
                user-select: none;">
             Score :
         </text>
 
-        <text class="lifeText" x="200" y="-200" style="font-family: 'Delius Swash Caps';
+        <text class="lifeText" x="200" y="-190" style="font-family: 'Delius Swash Caps';
                font-size  : 24;
                fill       : black;
                user-select: none;">
@@ -46,7 +54,8 @@
 
     <footer>Crée par PADRE Gilyann et SUSLU Matéo</footer>
     <script src="./app.js"></script>
-    <script src="./tirs.js"></script>
+    <script src="./tirsJoueur.js"></script>
+    <script src="./tirsEnnemis.js"></script>
     <script src="./ennemis.js"></script>
 </body>
 

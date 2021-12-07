@@ -82,8 +82,6 @@ function setMovSpeed() {
 
 function deplaceAmis(c) {
 
-  console.log(speedMov);
-
   c.x -= c.nX * speedMov;
   c.y -= c.nY * speedMov;
 
@@ -132,8 +130,13 @@ setInterval(function () {
         vieJoueur--;
         blink();
         if (vieJoueur == 0) {
-          alert("Game Over !");
-          location.reload();
+          gameOver =
+          pause = true;
+          d3.select(".gameOverScreen").style("display", "flex");
+          d3.select(".gameOverScreen span").text(score);
+          document.querySelector(".gameOverScreen button").addEventListener("click", ()=>{ 
+            location.reload();
+          });
         }
       }
       Amis = Amis.filter(amiVisible);

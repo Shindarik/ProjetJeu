@@ -43,7 +43,6 @@ function collision(c) {
 
     return suppressionDansTableau(Amis, (a) =>{
         if ((Math.floor(c.x) <= (a.x + 20) && Math.floor(c.x) >= (a.x - 20)) && (Math.floor(c.y) <= (a.y + 20) && Math.floor(c.y) >= (a.y - 20))) {
-            console.log("touché");
             return true;
         }
     });
