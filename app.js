@@ -7,6 +7,7 @@ let score = 0;
 let previousScore = 0;
 let pause = false;
 let gameOver = false;
+let menu = false;
 
 
 gameBox.on("mousemove", function (e) {

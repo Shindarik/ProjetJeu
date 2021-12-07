@@ -2,6 +2,7 @@ let compteurTirsEnnemis = 0;
 let tirsEnnemisArray = [];
 let coordTirs;
 
+
 function entierAlea(n) {
     return Math.floor(Math.random() * n);
 }
@@ -41,10 +42,10 @@ function deplaceTirsEnnemis(c) {
 }
 
 function tirsEnnemisVisible(c) {
-    if ((c.x <= 40 && c.x >= -40) && (c.y <= 40 && c.y >= -40)) {
+    if ((c.x <= 35 && c.x >= -35) && (c.y <= 35 && c.y >= -35)) {
       return false;
     } else {
-      return true;
+      return true;  
     }
 }
 
@@ -52,8 +53,8 @@ function tirsEnnemisBloque(c) {
 
     coordTirs = 180 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
     let coordTirsOpposite = (coordTirs+180) % 360;
-    let coordTirsMax = (coordTirsOpposite + 40) % 360;
-    let coordTirsMin = (coordTirsOpposite - 40) % 360;
+    let coordTirsMax = (coordTirsOpposite + 60);
+    let coordTirsMin = (coordTirsOpposite - 60) % 360;
 
 
     console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
@@ -100,10 +101,11 @@ setInterval(function () {
     }
   
   
-  }, 20);
+}, 20);
 
 
 setInterval(function () {
+
 
     if(!pause){
 
@@ -124,4 +126,4 @@ setInterval(function () {
     }
 
 
-}, 3000);
+}, 4000);
