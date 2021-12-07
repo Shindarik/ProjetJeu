@@ -163,6 +163,7 @@ h1 {
     outline: none;
     border-radius: 20px;
     transition: all 0.25s ease;
+    cursor: pointer;
 }
 
 .menuScreen .boutons button:focus {

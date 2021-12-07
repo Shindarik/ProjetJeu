@@ -4,7 +4,9 @@ let coord, coordSprite;
 let mouseX, mouseY;
 let vieJoueur = 3;
 let score = 0;
+let pouvoir = 0;
 let previousScore = 0;
+let previousScoreBig = 0;
 let pause = true;
 let gameOver = false;
 let menu = true;
@@ -29,10 +31,12 @@ gameBox.on("mousemove", function (e) {
 
 
 window.addEventListener("keypress", (e) =>{
-  if(e.key == 'p' && pause == false && gameOver == false && menu == false){
+  if(e.key == ' ' && pause == false && gameOver == false && menu == false){
+    e.preventDefault();
     pause = true;
     d3.select(".pauseScreen").style("display", "flex");
-  }else if(e.key == 'p' && pause == true && gameOver == false && menu == false){
+  }else if(e.key == ' ' && pause == true && gameOver == false && menu == false){
+    e.preventDefault();
     pause = false;
     d3.select(".pauseScreen").style("display", "none");
   }

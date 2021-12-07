@@ -74,6 +74,7 @@ setInterval(function () {
         
         d3.select(".scoreText").text("Score : "+score);
         d3.select(".lifeText").text("Vie(s) : "+vieJoueur);
+        d3.select(".powerText").text("Pouvoir(s) : "+pouvoir);
     
         tirArray.forEach(tir => {
             deplacePoint(tir);
@@ -84,11 +85,16 @@ setInterval(function () {
                 if (collision(d) == true) {
                     updateDOM();
                     affichageEnemmi();
+                    score += 10;
                     if(score >= previousScore+100){
+                        if(score >= previousScoreBig+500){
+                            previousScoreBig = score;
+                            vieJoueur++;
+                            pouvoir++;
+                        }
                         setMovSpeed();
                         previousScore = score;
                     }
-                    score += 10;
                     return true;
                 }
             });
