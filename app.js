@@ -47,7 +47,6 @@ document.querySelector(".skinReset").addEventListener("click", ()=>{
   let colorSkinInvert = invertTab[entierMinMax(0,1)];
   let colorSkinLight = colorLight[entierMinMax(0,colorLight.length)];
 
-  console.log(colorSkinHue, colorSkinInvert);
   d3.select(".skin").style("filter", `hue-rotate(${colorSkinHue}deg) invert(${colorSkinInvert}%) drop-shadow(0px 0px 3px ${colorSkinLight})`);
   d3.select(".jony").style("filter", `hue-rotate(${colorSkinHue}deg) invert(${colorSkinInvert}%) drop-shadow(0px 0px 3px ${colorSkinLight})`);
 });

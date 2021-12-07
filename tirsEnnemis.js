@@ -56,15 +56,9 @@ function tirsEnnemisBloque(c) {
     let coordTirsMax = (coordTirsOpposite + 60);
     let coordTirsMin = (coordTirsOpposite - 60) % 360;
 
-
-    console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
-
-
       if ((coord > coordTirsMax) && (coord < coordTirsMin)) {
-        console.log("non");
         return false;
       } else if((coord <= coordTirsMax) && (coord >= coordTirsMin)){
-        console.log("oui");
         return true;
       }
 }
