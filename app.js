@@ -1,6 +1,6 @@
 const gameBox = d3.select(".gameBox");
 
-let coord;
+let coord, coordSprite;
 let mouseX, mouseY;
 let vieJoueur = 3;
 let score = 0;
@@ -18,9 +18,10 @@ gameBox.on("mousemove", function (e) {
     mouseX = pointer[0];
     mouseY = pointer[1];
   
-    coord = 90 - (Math.atan2(pointer[0], pointer[1]) * 180) / Math.PI;
+    coord = 180 - (Math.atan2(pointer[0], pointer[1]) * 180) / Math.PI;
+    coordSprite = 90 - (Math.atan2(pointer[0], pointer[1]) * 180) / Math.PI;
   
-    d3.select(".jony").style("transform", `rotate(${coord}deg)`);
+    d3.select(".jony").style("transform", `rotate(${coordSprite}deg)`);
   }
 
 });

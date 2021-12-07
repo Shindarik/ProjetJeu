@@ -50,10 +50,10 @@ function tirsEnnemisVisible(c) {
 
 function tirsEnnemisBloque(c) {
 
-    coordTirs = 90 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
-    let coordTirsOpposite = (coordTirs+ 180) % 360;
-    let coordTirsMax = (coordTirsOpposite + 20) % 360;
-    let coordTirsMin = (coordTirsOpposite - 20) % 360;
+    coordTirs = 180 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
+    let coordTirsOpposite = (coordTirs+180) % 360;
+    let coordTirsMax = (coordTirsOpposite + 40) % 360;
+    let coordTirsMin = (coordTirsOpposite - 40) % 360;
 
 
     console.log("coord : "+coord, "coordTirs : "+coordTirs, "coordOpposite : "+coordTirsOpposite, "coordTirsMax : "+coordTirsMax, "coordTirsMin : "+coordTirsMin);
