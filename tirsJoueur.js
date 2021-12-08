@@ -90,7 +90,6 @@ setInterval(function () {
                         if(score >= previousScoreBig+500){
                             previousScoreBig = score;
                             vieJoueur++;
-                            pouvoir++;
                         }
                         setMovSpeed();
                         previousScore = score;
