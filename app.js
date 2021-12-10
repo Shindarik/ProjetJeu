@@ -4,9 +4,10 @@ let coord, coordSprite;
 let mouseX, mouseY;
 let vieJoueur = 3;
 let score = 0;
-let pouvoir = 0;
+let pouvoir = 1;
 let previousScore = 0;
 let previousScoreBig = 0;
+let previousScoreMax = 0;
 let pause = true;
 let gameOver = false;
 let menu = true;
@@ -59,4 +60,17 @@ document.querySelector(".start").addEventListener("click", ()=>{
   menu=false;
   pause=false;
   d3.select(".menuScreen").style("display", "none");
+});
+
+gameBox.on("click", ()=>{
+  if(pouvoir!= 0){
+    let speedMovInit = speedMov;
+    speedMov = speedMov/2;
+    pouvoir--;
+    
+
+    setTimeout(() => {
+      speedMov = speedMovInit;
+    }, 3000);
+  }
 });

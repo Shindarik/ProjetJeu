@@ -72,7 +72,6 @@ setInterval(function () {
       if (tirsEnnemisArray.every(tirsEnnemisVisible)) {
         updateTirsEnnemis();
       }else if (tirsEnnemisArray.every(tirsEnnemisBloque)) {
-        console.log("bloqué");
         tirsEnnemisArray = tirsEnnemisArray.filter(tirsEnnemisVisible);
         updateTirsEnnemis();
       } else {
