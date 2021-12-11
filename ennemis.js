@@ -127,10 +127,12 @@ setInterval(function () {
       updateAmis();
     } else {
       if (vieJoueur > 0) {
-        vieJoueur--;
-        blink();
+        if(!godmode){
+          vieJoueur--;
+          blink();
+        }
         if (vieJoueur == 0) {
-          gameOver =
+          gameOver = true;
           pause = true;
           d3.select(".gameOverScreen").style("display", "flex");
           d3.select(".gameOverScreen span").text(score);

@@ -70,10 +70,20 @@ function suppressionDansTableau(tableau, critere) {
 
 setInterval(function () {
 
+    if(!document.hasFocus() && gameOver == false){  //met en pause le jeu si la fenetre n'est pas en vue
+        pause=true;
+        d3.select(".pauseScreen").style("display", "flex");
+    }
+
     if(!pause){
+
+        if(godmode){
+            d3.select(".lifeText").text("Vie(s) : ∞");
+        }else{
+            d3.select(".lifeText").text("Vie(s) : "+vieJoueur);
+        }
         
         d3.select(".scoreText").text("Score : "+score);
-        d3.select(".lifeText").text("Vie(s) : "+vieJoueur);
         d3.select(".powerText").text("Pouvoir(s) : "+pouvoir);
     
         tirArray.forEach(tir => {

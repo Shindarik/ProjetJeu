@@ -11,6 +11,8 @@ let previousScoreMax = 0;
 let pause = true;
 let gameOver = false;
 let menu = true;
+let godmode = false;
+let gameFocus = true;
 
 
 gameBox.on("mousemove", function (e) {
@@ -40,6 +42,10 @@ window.addEventListener("keypress", (e) =>{
     e.preventDefault();
     pause = false;
     d3.select(".pauseScreen").style("display", "none");
+  }else if(e.key == 'g' && godmode == false && pause == false){  //Godmode
+    godmode = true;
+  }else if(e.key == 'g' && godmode == true && pause == false){
+    godmode = false;
   }
 });
 
@@ -67,10 +73,11 @@ gameBox.on("click", ()=>{
     let speedMovInit = speedMov;
     speedMov = speedMov/2;
     pouvoir--;
-    
+    gameBox.style("filter", "hue-rotate(250deg)");
 
     setTimeout(() => {
       speedMov = speedMovInit;
+      gameBox.style("filter", "hue-rotate(0deg)");
     }, 3000);
   }
 });
