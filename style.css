@@ -44,7 +44,6 @@ h1 {
 .gameBox {
     position: absolute;
     background-color: skyblue;
-    margin: 30px 0px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
