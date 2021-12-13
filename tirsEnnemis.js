@@ -50,8 +50,8 @@ function tirsEnnemisBloque(c) {
 
     coordTirs = 180 - (Math.atan2(c.x, c.y) * 180) / Math.PI;
     let coordTirsOpposite = (coordTirs+180) % 360;
-    let coordTirsMax = (coordTirsOpposite + 60);
-    let coordTirsMin = (coordTirsOpposite - 60) % 360;
+    let coordTirsMax = (coordTirsOpposite + 70);
+    let coordTirsMin = (coordTirsOpposite - 70) % 360;
 
       if ((coord > coordTirsMax) && (coord < coordTirsMin)) {
         return false;
