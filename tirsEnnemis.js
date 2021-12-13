@@ -34,8 +34,8 @@ updateTirsEnnemis();
 
 function deplaceTirsEnnemis(c) {
 
-    c.x -= c.nX * 2 * speedMov;
-    c.y -= c.nY * 2 * speedMov;
+    c.x -= c.nX * 1.7 * speedMov;
+    c.y -= c.nY * 1.7 * speedMov;
 }
 
 function tirsEnnemisVisible(c) {
@@ -93,7 +93,7 @@ setInterval(function () {
     }
   
   
-}, 20);
+}, 10);
 
 
 setInterval(function () {
