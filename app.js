@@ -42,10 +42,10 @@ window.addEventListener("keypress", (e) =>{
     e.preventDefault();
     pause = false;
     d3.select(".pauseScreen").style("display", "none");
-  }else if(e.key == 'g' && godmode == false && pause == false){  //Godmode
+  }else if((e.key == 'g' || e.key == 'G') && godmode == false && pause == false){  //Godmode
     godmode = true;
     d3.select(".godmodeText").style("display", "block");
-  }else if(e.key == 'g' && godmode == true && pause == false){
+  }else if((e.key == 'g' || e.key == 'G') && godmode == true && pause == false){
     godmode = false;
     d3.select(".godmodeText").style("display", "none");
   }
