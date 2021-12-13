@@ -20,11 +20,25 @@
 
     <div class="menuScreen">
         <h1>Choisis ton skin</h1>
-        <img class="skin" src="./images/angelas.svg"/>
-        <div class="boutons">
-        <button class="skinReset"><img class="skin" src="./images/random.svg"/></button>
-        <button class="start">Jouer</button>
+        <div class="midContent">
+            <div class="rules">
+                <h2>Règles</h2>
+                <p>Un trou s'est ouvert dans les nuages... Les âmes tristes et solitaires parcourent le ciel. C'est là que vous intervenez ! Apportez du bonheur à vos amis triste en leur envoyant des coeurs. Bloquez leur tristesse grâce à votre bouclier dans le dos.</p>
+            </div>
+            <img class="skin" src="./images/angelas.svg" />
+            <div class="rules">
+                <h2>Touches</h2>
+                <ul>
+                    <li>Se déplacer avec la <span>souris</span></li>
+                    <li><span>Clique Gauche</span> pour activez votre pouvoir</li>
+                    <li><span>Espace</span> pour pause</li>
+                    <li>À la base de Gilyann et du Graphisme</li>
+                </ul>
+            </div>
         </div>
+        <div class="boutons">
+            <button class="skinReset"><img class="skin" src="./images/random.svg" /></button>
+            <button class="start">Jouer</button>
         </div>
     </div>
 
@@ -64,6 +78,15 @@
                fill       : black;
                user-select: none;">
             Pouvoir(s) :
+        </text>
+
+        <text class="godmodeText" x="200" y="210" stroke="rgb(143, 121, 0)" style="font-family: sans-serif;
+               font-size  : 20;
+               fill       : gold;
+               font-weight: 900;
+               user-select: none;
+               display: none;">
+            GODMODE
         </text>
 
         <image class="jony" xlink:href="./images/angelas.svg" x="-42.5" y="-42.5" height="85px" width="85px" />

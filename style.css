@@ -143,6 +143,37 @@ h1 {
     align-items: center;
 }
 
+.menuScreen .midContent {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rules {
+    width: 30vw;
+}
+
+.menuScreen .midContent h2 {
+    font-size: 1.5rem;
+}
+
+.menuScreen .midContent p {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.menuScreen .midContent ul {
+    font-size: 1rem;
+}
+
+.menuScreen .midContent ul span {
+    font-style: italic;
+    font-weight: 900;
+    color: skyblue;
+}
+
 .menuScreen img {
     width: 10vw;
     -webkit-filter: drop-shadow(0px 0px 2px white);

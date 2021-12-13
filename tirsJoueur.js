@@ -70,7 +70,7 @@ function suppressionDansTableau(tableau, critere) {
 
 setInterval(function () {
 
-    if(!document.hasFocus() && gameOver == false){  //met en pause le jeu si la fenetre n'est pas en vue
+    if(!document.hasFocus() && gameOver == false && menu == false){  //met en pause le jeu si la fenetre n'est pas en vue
         pause=true;
         d3.select(".pauseScreen").style("display", "flex");
     }
